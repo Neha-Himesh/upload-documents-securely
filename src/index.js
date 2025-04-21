@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	sendOTPButton.addEventListener('click', () => {
 		const phone = document.getElementById("phone").value;
 		const recaptchaContainer = document.getElementById('recaptcha-container');
+		auth.settings.appVerificationDisabledForTesting = true;
+		console.log("auth settings in SignInForm", auth.settings+':here with :'+ auth.settings.appVerificationDisabledForTesting);
 		console.log(`auth is ${auth}`);
 		// Create reCAPTCHA verifier
 		window.recaptchaVerifier = new RecaptchaVerifier(recaptchaContainer, {
