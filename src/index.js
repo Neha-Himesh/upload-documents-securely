@@ -11,26 +11,40 @@ document.addEventListener('DOMContentLoaded', () => {
 	sendOTPButton.addEventListener('click', () => {
 		const phone = document.getElementById("phone").value;
 		const recaptchaContainer = document.getElementById('recaptcha-container');
-		auth.settings.appVerificationDisabledForTesting = true;
-		console.log("auth settings in SignInForm", auth.settings+':here with :'+ auth.settings.appVerificationDisabledForTesting);
+		// auth.settings.appVerificationDisabledForTesting = true;
+		// console.log("auth settings in SignInForm", auth.settings+':here with :'+ auth.settings.appVerificationDisabledForTesting);
 		console.log(`auth is ${auth}`);
 		// Create reCAPTCHA verifier
 		window.recaptchaVerifier = new RecaptchaVerifier(recaptchaContainer, {
 			'size': 'invisible', // or 'normal'
 			'callback': (response) => {
-				console.log('reCAPTCHA solved');
-			}
+				console.log(`reCAPTCHA solved:`, response);
+				signInWithPhoneNumber(auth, phone, window.recaptchaVerifier)
+					.then((result) => {
+						confirmationResult = result;
+						alert("OTP Sent");
+					})
+					.catch((error) => {
+						console.error("Error during signInWithPhoneNumber:", error);
+					});
+			},
+			'expired-callback': () => {
+            console.log('reCAPTCHA token expired');
+            // Handle token expiry, e.g., re-render verifier
+        }
 		}, auth);
+		window.recaptchaVerifier.verify();
 
-		// Send OTP
-		signInWithPhoneNumber(auth, phone, window.recaptchaVerifier)
-			.then((result) => {
-				confirmationResult = result;
-				alert("OTP Sent");
-			})
-			.catch((error) => {
-				console.error("Error during signInWithPhoneNumber:", error);
-			});
+		console.log(`window.recaptchaVerifier is ${window.recaptchaVerifier}`);
+		// // Send OTP
+		// signInWithPhoneNumber(auth, phone, window.recaptchaVerifier)
+		// 	.then((result) => {
+		// 		confirmationResult = result;
+		// 		alert("OTP Sent");
+		// 	})
+		// 	.catch((error) => {
+		// 		console.error("Error during signInWithPhoneNumber:", error);
+		// 	});
 	});
 
 	verifyOTPButton.addEventListener('click', () => {
