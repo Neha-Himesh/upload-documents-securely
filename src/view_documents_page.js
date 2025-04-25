@@ -1,0 +1,31 @@
+import { db } from './setup.js';
+import { collection, getDocs } from "firebase/firestore";
+
+async function fetchDocuments() {
+    const querySnapshot = await getDocs(collection(db, "documents"));
+    const documents = [];
+    querySnapshot.forEach((doc) => {
+        documents.push({ id: doc.id, ...doc.data() });
+    });
+    return documents;
+}
+
+async function displayDocuments() {
+    const documents = await fetchDocuments();
+    const documentsListDiv = document.getElementById('documents-list');
+
+    documents.forEach((doc) => {
+        const documentCard = `
+            <div class="document-card mb-3">
+                <h3>${doc.documentName}</h3>
+                <p>Type: ${doc.documentType}</p>
+                <img src="${doc.fileUrl}" alt="${doc.documentName}" width="200" />
+                <p>Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
+            </div>
+            <hr/>
+        `;
+        documentsListDiv.innerHTML += documentCard;
+    });
+}
+
+displayDocuments();

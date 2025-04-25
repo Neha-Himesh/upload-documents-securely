@@ -6,6 +6,7 @@ module.exports = {
   	entry: {
 		index: './src/index.js', // Your main JavaScript file
 		upload_page: './src/upload_page.js',
+		view_documents_page: './src/view_documents_page.js'
 	},
 	output: {
 		filename: '[name].bundle.js', // The name of your bundled JavaScript file
@@ -53,6 +54,11 @@ module.exports = {
 			template: './src/upload_page.html',
 			filename: 'upload_page.html',
 			chunks: ['upload_page'], // Load only upload_page.js
+		}),
+		new HtmlWebpackPlugin({
+			template: './src/view_documents_page.html',
+			filename: 'view_documents_page.html',
+			chunks: ['view_documents_page'], // Load only upload_page.js
 		}),
 		new CopyWebpackPlugin({
 			patterns: [{ from: 'public', to: '.' }]
