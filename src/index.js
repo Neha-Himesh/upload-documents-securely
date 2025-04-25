@@ -136,7 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		confirmationResult.confirm(code)
 			.then((result) => {
 				alert("OTP verified. Redirecting...");
-				window.location.href = 'dashboard.html';
+				setTimeout(() => {
+					window.location.href = 'user_home_page.html';
+				}, 1000);
 			})
 			.catch((error) => {
 				console.error("Error verifying OTP:", error);
