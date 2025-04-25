@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   	entry: {
 		index: './src/index.js', // Your main JavaScript file
-		user_home_page: './src/user_home_page.js',
 		upload_page: './src/upload_page.js',
 	},
 	output: {
@@ -43,11 +42,6 @@ module.exports = {
 			template: './src/index.html', // Your base HTML file
 			filename: 'index.html', // Output HTML filename
 			chunks: ['index'],
-		}),
-		new HtmlWebpackPlugin({
-			template: './src/user_home_page.html',
-			filename: 'user_home_page.html',
-			chunks: ['user_home_page'], // Load only user_home_page.js
 		}),
 		new HtmlWebpackPlugin({
 			template: './src/upload_page.html',
