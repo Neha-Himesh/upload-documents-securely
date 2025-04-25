@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   	entry: {
@@ -44,10 +45,17 @@ module.exports = {
 			chunks: ['index'],
 		}),
 		new HtmlWebpackPlugin({
+			template: './src/user_home_page.html',
+			filename: 'user_home_page.html',
+			chunks: ['user_home_page'], // Load only user_home_page.js
+		}),
+		new HtmlWebpackPlugin({
 			template: './src/upload_page.html',
 			filename: 'upload_page.html',
 			chunks: ['upload_page'], // Load only upload_page.js
 		}),
-
+		new CopyWebpackPlugin({
+			patterns: [{ from: 'public', to: '.' }]
+		})
 	],
 };
