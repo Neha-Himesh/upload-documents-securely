@@ -9,7 +9,7 @@ window.onload = function() {
 }
 
 function editDocument(doc){
-    
+    document.getElementById('edit-document-page-container').innerHTML = 
     `
     <form action="" id="document-upload-form">
         <div class="row mb-3">
@@ -21,7 +21,7 @@ function editDocument(doc){
         <div class="row mb-3">
             <label for="type-of-document" class="col-sm-4 col-form-label">Select the type of the document</label>
             <div class="col-sm-8">
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="type-of-document" >
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="edit-document-page-type-of-document" >
                     <option selected>Select the type of document</option>
                     <option value="1">Aadhaar card</option>
                     <option value="2">Arms license</option>
@@ -54,7 +54,7 @@ function editDocument(doc){
             <label for="document-upload" class="col-sm-4">Upload your document</label>
             <div class="col-sm-8">
                  ${
-                    doc.documentUrl
+                    doc.fileUrl
                         ? `<p>Already uploaded: <a href="${doc.fileUrl}" target="_blank">${doc.documentName}</a></p>`
                         : ''
                 }
@@ -66,6 +66,15 @@ function editDocument(doc){
         </div>
         <button type="submit" class="col-sm-1 offset-4 mt-4">Submit</button>
     </form>`
-    document.getElementById('type-of-document').value = doc.documentType;
+    // Now select the option based on TEXT
+    const selectElement = document.getElementById('edit-document-page-type-of-document');
+    const options = selectElement.options;
+
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].text === doc.documentType) {
+            selectElement.selectedIndex = i;
+            break;
+        }
+    }
 
 }

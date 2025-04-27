@@ -10,22 +10,34 @@ async function fetchDocuments() {
     return documents;
 }
 
+function openEditPage(docString) {
+    const doc = JSON.parse(decodeURIComponent(docString));
+    localStorage.setItem('editDoc', JSON.stringify(doc));  // Save the doc object
+    window.location.href = "edit_document_page.html"; // Go to new page
+}
+
 async function displayDocuments() {
     const documents = await fetchDocuments();
     const documentsListDiv = document.getElementById('documents-list');
 
     documents.forEach((doc) => {
-        const documentCard = `
+        const docData = encodeURIComponent(JSON.stringify(doc)); 
+
+        // Create a real div element
+        const documentCard = document.createElement('div');
+        documentCard.className = 'document-card mb-3';
+
+        documentCard.innerHTML = `
             <div class="document-card mb-3" >
                 <dic class="row">
                     <div class="col-8">
                         <h3>${doc.documentName}</h3>
                     </div>
-                    <div class="col-2" onclick="openEditPage(${docData})">
-                        <img src="images/edit_icon.png" width="50%">
+                    <div class="col-2">
+                        <img id="view-documents-edit-icon" src="images/edit_icon.png" width="10%">
                     </div>
                     <div class="col-2">
-                        <img src="images/delete_icon.png" width="50%">
+                        <img id="view-documents-delete-icon" src="images/delete_icon.png" width="10%" style="cursor: pointer;">
                     </div>
                 </div>
                 <p>Type: ${doc.documentType}</p>
@@ -34,14 +46,21 @@ async function displayDocuments() {
             </div>
             <hr/>
         `;
-        documentsListDiv.innerHTML += documentCard;
-    });
-}
 
-function openEditPage(docString) {
-    const doc = JSON.parse(decodeURIComponent(docString));
-    localStorage.setItem('editDoc', JSON.stringify(doc));  // Save the doc object
-    window.location.href = "edit_document_page.html"; // Go to new page
+        // Find the edit icon inside the documentCard
+        const editIcon = documentCard.querySelector('#view-documents-edit-icon');
+
+        // Add click event programmatically
+        editIcon.addEventListener('click', () => {
+            openEditPage(docData);
+        });
+
+        // Add card to the page
+        documentsListDiv.appendChild(documentCard);
+        documentsListDiv.appendChild(document.createElement('hr'));
+
+    });
+    
 }
 
 displayDocuments();
