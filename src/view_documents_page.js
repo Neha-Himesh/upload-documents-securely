@@ -16,12 +16,12 @@ async function displayDocuments() {
 
     documents.forEach((doc) => {
         const documentCard = `
-            <div class="document-card mb-3">
+            <div class="document-card mb-3" >
                 <dic class="row">
-                    <div> class="col-8">
+                    <div class="col-8">
                         <h3>${doc.documentName}</h3>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2" onclick="openEditPage(${docData})">
                         <img src="images/edit_icon.png" width="50%">
                     </div>
                     <div class="col-2">
@@ -36,6 +36,12 @@ async function displayDocuments() {
         `;
         documentsListDiv.innerHTML += documentCard;
     });
+}
+
+function openEditPage(docString) {
+    const doc = JSON.parse(decodeURIComponent(docString));
+    localStorage.setItem('editDoc', JSON.stringify(doc));  // Save the doc object
+    window.location.href = "edit_document_page.html"; // Go to new page
 }
 
 displayDocuments();
