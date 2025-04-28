@@ -7,7 +7,8 @@ module.exports = {
 		index: './src/index.js', // Your main JavaScript file
 		upload_page: './src/upload_page.js',
 		view_documents_page: './src/view_documents_page.js',
-		edit_document_page: './src/edit_document_page.js'
+		edit_document_page: './src/edit_document_page.js',
+		register_profile_page: './src/register_profile_page.js'
 	},
 	output: {
 		filename: '[name].bundle.js', // The name of your bundled JavaScript file
@@ -41,6 +42,11 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new HtmlWebpackPlugin({
+			template: './src/register_profile_page.html', // Your base HTML file
+			filename: 'register_profile_page.html', // Output HTML filename
+			chunks: ['register_profile_page'],
+		}),
 		new HtmlWebpackPlugin({
 			template: './src/index.html', // Your base HTML file
 			filename: 'index.html', // Output HTML filename

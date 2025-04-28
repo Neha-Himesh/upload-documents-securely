@@ -70,6 +70,8 @@
 // index.js
 import { auth, RecaptchaVerifier } from './setup.js';
 import { signInWithPhoneNumber } from 'firebase/auth';
+import { db } from './setup.js'; // Firestore database
+import { doc, getDoc } from "firebase/firestore"; // Firestore functions
 
 let confirmationResult;
 
@@ -134,11 +136,35 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		confirmationResult.confirm(code)
-			.then((result) => {
-				alert("OTP verified. Redirecting...");
-				setTimeout(() => {
-					window.location.href = '/user_home_page.html';
-				}, 500);
+			.then(async (result) => {
+				// alert("OTP verified. Redirecting...");
+				// setTimeout(() => {
+				// 	window.location.href = '/user_home_page.html';
+				// }, 500);
+				alert("OTP verified. Fetching user details...");
+				const user = result.user;
+				console.log("User signed in:", user);
+
+				// Now fetch user data from Firestore
+				const userRef = doc(db, "users", user.phoneNumber);
+				const userSnap = await getDoc(userRef);
+
+				if (userSnap.exists()) {
+					const userData = userSnap.data();
+					console.log("User data:", userData);
+
+					// Save data to sessionStorage or localStorage to use on next page
+					sessionStorage.setItem('userData', JSON.stringify(userData));
+
+					setTimeout(() => {
+						window.location.href = '/user_home_page.html';
+					}, 500);
+				} else {
+					alert("No user data found. Please complete your profile.");
+
+					// Redirect to a page where user fills in details
+					window.location.href = '/register_profile_page.html';
+				}
 			})
 			.catch((error) => {
 				console.error("Error verifying OTP:", error);
