@@ -43,6 +43,7 @@ async function displayDocuments() {
                 <p>Type: ${doc.documentType}</p>
                 <img src="${doc.fileUrl}" alt="${doc.documentName}" width="200" />
                 <p>Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
+                <p>Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
             </div>
             <hr/>
         `;

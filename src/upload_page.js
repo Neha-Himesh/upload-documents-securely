@@ -16,10 +16,6 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         alert("Please select a file to upload");
     }
     
-    if(fileUploaded.size > 2 * 1024 * 1024){
-        alert('File size must be less than 2MB');
-    }
-
     // Size Restriction: Max 2MB
     if (fileUploaded.size > 2 * 1024 * 1024) {
         alert("File size must be less than 2MB.");

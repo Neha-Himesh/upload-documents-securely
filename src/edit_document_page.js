@@ -1,3 +1,7 @@
+import { db, storage } from './setup.js';
+import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc as firestoreDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+
 window.onload = function() {
     const docString = localStorage.getItem('editDoc');
     if (docString) {
@@ -11,15 +15,15 @@ window.onload = function() {
 function editDocument(doc){
     document.getElementById('edit-document-page-container').innerHTML = 
     `
-    <form action="" id="document-upload-form">
+    <form action="" id="edit-document-page-form">
         <div class="row mb-3">
-            <label for="document-name" class="col-sm-4 col-form-label">Enter name of the document</label>
+            <label for="edit-document-page-document-name" class="col-sm-4 col-form-label">Enter name of the document</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="document-name" value="${doc.documentName}">
+                <input type="text" class="form-control" id="edit-document-page-document-name" value="${doc.documentName}">
             </div>
         </div>
         <div class="row mb-3">
-            <label for="type-of-document" class="col-sm-4 col-form-label">Select the type of the document</label>
+            <label for="edit-document-page-type-of-document" class="col-sm-4 col-form-label">Select the type of the document</label>
             <div class="col-sm-8">
                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="edit-document-page-type-of-document" >
                     <option selected>Select the type of document</option>
@@ -51,24 +55,26 @@ function editDocument(doc){
             </div>
         </div>
         <div class="row mb-3">
-            <label for="document-upload" class="col-sm-4">Upload your document</label>
+            <label for="edit-document-page-document-upload" class="col-sm-4">Upload your document</label>
             <div class="col-sm-8">
                  ${
                     doc.fileUrl
                         ? `<p>Already uploaded: <a href="${doc.fileUrl}" target="_blank">${doc.documentName}</a></p>`
                         : ''
                 }
-                <input type="file" id="document-upload" name="document" accept="pdf, image/*">
+                <input type="file" id="edit-document-page-document-upload" name="document" accept="pdf, image/*">
             </div>
         </div>
         <div class="row">
             <div class="col-sm-8"></div>
         </div>
-        <button type="submit" class="col-sm-1 offset-4 mt-4">Submit</button>
+        <button id="edit-document-page-submit-button" type="submit" class="col-sm-1 offset-4 mt-4">Submit</button>
     </form>`
     // Now select the option based on TEXT
     const selectElement = document.getElementById('edit-document-page-type-of-document');
     const options = selectElement.options;
+
+    const editDocumentPageForm = document.getElementById('edit-document-page-form');
 
     for (let i = 0; i < options.length; i++) {
         if (options[i].text === doc.documentType) {
@@ -76,5 +82,60 @@ function editDocument(doc){
             break;
         }
     }
+
+    editDocumentPageForm.addEventListener('submit', async function (e){
+        e.preventDefault();
+
+        const docString = localStorage.getItem('editDoc');
+        if (!docString) {
+            alert('No document to edit.');
+            return;
+        }
+       
+        const editDocumentPageNameOfDocument = document.getElementById("edit-document-page-document-name").value;
+        const editDocumentPageTypeOfDocumentOptions = document.getElementById("edit-document-page-type-of-document");
+        const editDocumentPageTypeOfDocumentSelected = editDocumentPageTypeOfDocumentOptions.options[editDocumentPageTypeOfDocumentOptions.selectedIndex].text;
+
+        const oldDoc = JSON.parse(docString);
+        let newFileURL = oldDoc.fileUrl;
+
+        const editDocumentPageFileInput = document.getElementById('edit-document-page-document-upload');
+        var editDocumentPageFileUploaded;
+        var editDocumentPageDownloadURL;
+
+        if(editDocumentPageFileInput.files.length){
+            editDocumentPageFileUploaded = editDocumentPageFileInput.files[0];
+
+            if (editDocumentPageFileUploaded.size > 2 * 1024 * 1024) {
+                alert("File size must be less than 2MB.");
+                return;
+            }
+        
+           
+            // Proceed with upload to Firebase Storage
+            const newStorageRef = storageRef(storage, `documents/${editDocumentPageFileUploaded.name}_${Date.now()}`);
+            await uploadBytes(newStorageRef, editDocumentPageFileUploaded);
+            editDocumentPageDownloadURL = await getDownloadURL(newStorageRef);
+            newFileURL = editDocumentPageDownloadURL;
+        }
+       
+        const docRef = firestoreDoc(db, "documents", oldDoc.id);
+        // if (!newFileURL){
+        //     newFileURL = '';
+        // }
+        // Then save metadata to Firestore
+        await updateDoc(docRef, {
+            documentName: editDocumentPageNameOfDocument,
+            documentType: editDocumentPageTypeOfDocumentSelected,
+            fileName: editDocumentPageFileUploaded ? editDocumentPageFileUploaded.name : oldDoc.fileName,
+            fileType: editDocumentPageFileUploaded ? editDocumentPageFileUploaded.type : oldDoc.fileType,
+            fileSize: editDocumentPageFileUploaded ? editDocumentPageFileUploaded.size : oldDoc.fileSize,
+            fileUrl: newFileURL,
+            updatedAt: serverTimestamp()
+        });
+    
+        alert("Document updated successfully!");
+        window.location.href = 'view_documents_page.html';  // Redirect back
+    })
 
 }
