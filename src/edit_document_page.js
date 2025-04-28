@@ -120,9 +120,7 @@ function editDocument(doc){
         }
        
         const docRef = firestoreDoc(db, "documents", oldDoc.id);
-        // if (!newFileURL){
-        //     newFileURL = '';
-        // }
+       
         // Then save metadata to Firestore
         await updateDoc(docRef, {
             documentName: editDocumentPageNameOfDocument,

@@ -14,6 +14,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
     if(!fileUploaded){
         alert("Please select a file to upload");
+        return;
     }
     
     // Size Restriction: Max 2MB
@@ -23,7 +24,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     }
 
     // Proceed with upload to Firebase Storage
-    const storageRef = ref(storage, `documents/${fileUploaded.name}`);
+    const storageRef = ref(storage, `documents/${fileUploaded.name}_${Date.now()}`);
     await uploadBytes(storageRef, fileUploaded);
 
     // Optionally get download URL
