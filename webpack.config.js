@@ -8,7 +8,8 @@ module.exports = {
 		upload_page: './src/upload_page.js',
 		view_documents_page: './src/view_documents_page.js',
 		edit_document_page: './src/edit_document_page.js',
-		register_profile_page: './src/register_profile_page.js'
+		register_profile_page: './src/register_profile_page.js',
+		user_home_page: './src/user_home_page.js'
 	},
 	output: {
 		filename: '[name].bundle.js', // The name of your bundled JavaScript file
