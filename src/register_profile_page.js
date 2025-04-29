@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 email,
                 phone
             });
-
+            const userData = { name, email, phone };
+            sessionStorage.setItem('userData', JSON.stringify(userData));
             alert('Profile saved successfully!');
             window.location.href = '/user_home_page.html'; // redirect to home/dashboard
         } catch (error) {
