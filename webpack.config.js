@@ -22,7 +22,7 @@ module.exports = {
 		static: './dist', // Serve static files from the 'dist' directory
 		port: 8080, // Choose a port for the development server
 		open: true, // Automatically open the browser
-		hot: true, // Enable hot module replacement (if needed for your setup)
+		hot: false, // Enable hot module replacement (if needed for your setup)
 		historyApiFallback: true, // Useful if you have client-side routing (even in plain JS)
 	},
 	module: {
