@@ -1,10 +1,15 @@
 import { db } from './setup.js';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { deleteDocument } from './delete_document.js';
 
 
 async function fetchDocuments() {
-    const querySnapshot = await getDocs(collection(db, "documents"));
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    const q = query(
+        collection(db, "documents"),
+        where("userPhoneNumber", "==", userData.phone)
+      );
+    const querySnapshot = await getDocs(q);
     const documents = [];
     querySnapshot.forEach((doc) => {
         documents.push({ id: doc.id, ...doc.data() });
@@ -20,7 +25,13 @@ function openEditPage(docString) {
 
 async function displayDocuments() {
     const documents = await fetchDocuments();
+    console.log(`documents: ${documents}`);
+    if(!documents.length){
+        alert("No document to display");
+        window.location.href='user_home_page.html';
+    }
     const documentsListDiv = document.getElementById('documents-list');
+
 
     documents.forEach((doc) => {
         const documentToBeEditedData = encodeURIComponent(JSON.stringify(doc)); 

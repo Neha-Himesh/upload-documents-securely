@@ -1,4 +1,4 @@
-import {db, storage} from './setup.js';
+import {db, storage, auth} from './setup.js';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
@@ -37,6 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
             try{
                 // Proceed with upload to Firebase Storage
                 const storageRef = ref(storage, `documents/${fileUploaded.name}_${Date.now()}`);
+                const userData = JSON.parse(sessionStorage.getItem('userData'));
+                if(!userData){
+                    alert("Session expired! Please login again");
+                    window.location.href='index.html';
+                }
                 await uploadBytes(storageRef, fileUploaded);
     
                 // Optionally get download URL
@@ -45,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Then save metadata to Firestore
                 await addDoc(collection(db, "documents"), {
                     documentName: nameOfDocument,
+                    userName: userData.name,
+                    userPhoneNumber: userData.phone,
                     documentType: typeOfDocumentSelected,
                     fileName: fileUploaded.name,
                     fileType: fileUploaded.type,
