@@ -6,8 +6,8 @@ const documentUploadPageSubmitButton = document.getElementById('document-upload-
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('document-upload-form');
-    if (!form.dataset.listenerAttached){
-        form.dataset.listenerAttached = "true";
+    // if (!form.dataset.listenerAttached){
+    //     form.dataset.listenerAttached = "true";
         document.querySelector("#document-upload-form").addEventListener("submit", async (e) => {
             e.preventDefault();
             documentUploadPageSubmitButton.disabled = true;
@@ -65,6 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
             console.log("Submit event triggered");
         });
-    }
+    // }
         
 });

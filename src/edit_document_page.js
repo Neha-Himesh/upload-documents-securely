@@ -3,7 +3,7 @@ import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage
 import { doc as firestoreDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 
 window.onload = function() {
-    const docString = localStorage.getItem('editDoc');
+    const docString = localStorage.getItem('documentToBeEdited');
     if (docString) {
         const doc = JSON.parse(docString);
         editDocument(doc); 
