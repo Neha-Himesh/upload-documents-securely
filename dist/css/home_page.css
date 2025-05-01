@@ -1,0 +1,72 @@
+body { 
+    color: rgba(0,0,0,0.87); 
+    font-family: Roboto, Helvetica, Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/documents_image_1.jpeg'); /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: -1; /* Behind all content */
+}
+
+#message { 
+    background: white; 
+    max-width: 100%; 
+    border-radius: 6px; 
+}
+#message h1 { 
+    color: #ffa100; 
+    font-weight: bold; 
+    margin: 0 0 8px; 
+}
+#message h2 { 
+    font-weight: 300; 
+    color: rgba(0,0,0,0.6);
+}
+#message p { 
+    line-height: 140%;
+    color: rgb(147, 143, 143);
+}
+#message a { 
+    display: block;
+    text-align: center; 
+    background: #039be5; 
+    text-transform: uppercase; 
+    text-decoration: none;
+    color: white; 
+    padding: 16px; 
+    border-radius: 4px; 
+}
+#message, #message a { 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
+}
+input::placeholder {
+    font-size: 22px;
+}
+input{
+    font-size: 25px;
+}
+#load { 
+    color: rgb(147, 143, 143);
+    text-align: center; 
+    font-size: 13px; 
+}
+@media (max-width: 600px) {
+    body, #message { 
+        margin-top: 0; 
+        background: white; 
+        box-shadow: none; 
+    }
+    body { 
+        border-top: 16px solid #ffa100; 
+    } 	
+}

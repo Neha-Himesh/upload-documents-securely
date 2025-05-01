@@ -1,136 +1,49 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-     update the version number as needed -->
-    <!--<script defer src="/__/firebase/11.6.0/firebase-app-compat.js"></script> -->
-    <!-- include only the Firebase features as you need -->
-    <!--<script defer src="/__/firebase/11.6.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.6.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.6.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.6.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.6.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.6.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.6.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.6.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.6.0/firebase-performance-compat.js"></script> -->
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <!-- <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-        <input type="text" id="phone" placeholder="+91XXXXXXXXXX">
-        <div id="recaptcha-container"></div>
-        <button onclick="sendOTP()">Send OTP</button>
-        
-        <input type="text" id="otp" placeholder="Enter OTP">
-        <button onclick="verifyOTP()">Verify OTP</button>    
-
-  </body>
-</html> -->
 <!DOCTYPE html>
 <html>
     <head>
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<title>Firebase OTP Authentication</title>
-    	<style media="screen">
-    	  	body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-    	  	#message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-    	  	#message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-    	  	#message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-    	  	#message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-    	  	#message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-    	  	#message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-    	  	#load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-    	  	@media (max-width: 600px) {
-    	  	  body, #message { margin-top: 0; background: white; box-shadow: none; }
-    	  	  body { border-top: 16px solid #ffa100; }
-    	}
-    	</style>
+    	<title>Login | Secure Document Upload</title>
+    	<link href="/css/home_page.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-      	<div id="message">
-      	<h2>Welcome</h2>
-      	<h1>Firebase OTP Authentication</h1>
-      	<p>Use your phone number to log in with OTP authentication!</p>
-      	<input type="text" id="phone" placeholder="+91XXXXXXXXXX" class="m-3 p-3 ms-0">
-      	<div id="recaptcha-container"></div>
-      	<button id="send-otp-button" class="btn btn-primary m-3 p-3 ms-0">Send OTP</button>
-		
-      	<input type="text" id="otp" placeholder="Enter OTP" class="p-3 m-3 ms-0">
-      	<button id="verify-otp-button" class="btn btn-primary p-3 m-3 ms-0">Verify OTP</button>
-      	</div>
-      	<p id="load">Firebase SDK Loading&hellip;</p>
-
-      	<script src="index.bundle.js" type="module"> </script>
-      	<!-- <script src="src/index.js" type="module"></script> -->
-      	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <div class="container">
+            <div class="row m-3">
+                <div class="col-12 row mb-5 align-items-center justify-content-center">
+                    <div id="message" class="col-lg-7 col-md-10 col-12 my-3 p-md-5 p-3">
+                        <p id="load" class="fs-3 p-3 m-3 text-center">Just one step away from accessing or uploading documents&hellip;</p> 
+                        <h1 class="p-3 text-center">Please login to continue</h1>
+                        <h2 class="p-3 fs-4"> If new user, you are required to enter name and email post OTP verification in the register page </h2>
+                        <p class="p-3 fs-3">Use your phone number to generate OTP and verify the same to login</p>
+                        <div class="row">
+                            <div class="col-md-8 col-12">
+                                <input type="text" id="phone" placeholder="+91XXXXXXXXXX" class="m-3 p-2 ms-0 w-100" style="font-size: 25px;">
+                            </div>
+                            <div class="col-md-4 col-8">
+                                <div class="row">
+                                    <div id="recaptcha-container"></div>
+                                    <div>
+                                        <button id="send-otp-button" class="btn btn-primary m-3 p-2 ms-0 btn-lg w-md-75 w-100">Send OTP</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-12">
+                                <input type="text" id="otp" placeholder="Enter OTP" class="p-2 m-3 ms-0 w-100" style="font-size: 25px;">
+                            </div>
+                            <div class="col-md-4 col-8">
+                                <button id="verify-otp-button" class="btn btn-primary p-2 m-3 ms-0 btn-lg w-lg-75 w-100">Verify OTP</button>
+                            </div>
+                        </div>
+                  
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+        <script src="index.bundle.js" type="module"> </script>
+        <!-- <script src="src/index.js" type="module"></script> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     </body>
 </html>
