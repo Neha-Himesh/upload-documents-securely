@@ -50,3 +50,24 @@
     animation: shakeX 1s;
     animation-duration: 1s;
 }
+
+/* Made the navbar sticky and added background color to the same */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Added border to the active section's name highlighted in the navbar. Made background-color as transparent */
+.nav-pills .nav-link.active{
+    border: white 2px solid;
+    background-color: transparent !important ;
+}
+
+/* Modified font size and weight to the name 'Neha Himesh' present on the navbar */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}

@@ -15,9 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	console.log("Logged-in user:", userData.name);
 
 	// Update the sidebar or any element with the user's name
-	const loggedInUserName = document.getElementById('user-home-page-username-display');
-	if (loggedInUserName) {
-		loggedInUserName.textContent = "Hi " + userData.name + "!";
+	const loggedInUserName = document.getElementsByClassName('user-home-page-username-display');
+	if (loggedInUserName.length) {
+		for(var i = 0; i < loggedInUserName.length; i ++){
+			loggedInUserName[i].textContent = userData.name;
+		}
+		
 	}
     logoutBtn.addEventListener('click', async () => {
         try {
