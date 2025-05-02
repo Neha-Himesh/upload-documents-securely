@@ -11,10 +11,8 @@ window.onload = function() {
         alert("No document found to edit!");
     }
 }
-
-function editDocument(doc){
-    document.getElementById('edit-document-page-container').innerHTML = 
-    `
+/*
+`
     <form action="" id="edit-document-page-form">
         <div class="row mb-3">
             <label for="edit-document-page-document-name" class="col-sm-4 col-form-label">Enter name of the document</label>
@@ -69,7 +67,94 @@ function editDocument(doc){
             <div class="col-sm-8"></div>
         </div>
         <button id="edit-document-page-submit-button" type="submit" class="col-sm-1 offset-4 mt-4">Submit</button>
-    </form>`
+    </form>` */
+
+function editDocument(doc){
+    document.getElementById('edit-document-page-container').innerHTML = 
+    ` 
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid container">
+            <a class="navbar-brand user-home-page-username-display" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav nav nav-pills ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="Logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row m-3">
+            <div class="col-12 row mb-5 align-items-center justify-content-center">
+                <div id="edit-document-form-wrapper" class="col-lg-7 col-md-10 col-12 my-3 p-md-5 p-3 border border-2 rounded shadow">
+                    <h2 class="text-center mb-4">Edit Document</h2>
+                    <form action="" id="edit-document-page-form">
+                        <!-- Document Name -->
+                        <div class="mb-4">
+                            <label for="edit-document-page-document-name" class="form-label">Enter name of the document</label>
+                            <input type="text" class="form-control" id="edit-document-page-document-name" value="${doc.documentName}">
+                        </div>
+
+                        <!-- Document Type -->
+                        <div class="mb-4">
+                            <label for="edit-document-page-type-of-document" class="form-label">Select the type of the document</label>
+                            <select class="form-select" id="edit-document-page-type-of-document">
+                                <option selected>Select the type of document</option>
+                                <option value="1">Aadhaar card</option>
+                                <option value="2">Arms license</option>
+                                <option value="3">Bank passbook</option>
+                                <option value="4">Bank statements</option>
+                                <option value="5">Birth certificate</option>
+                                <option value="6">Domicile certificate issued by government</option>
+                                <option value="7">Driving License</option>
+                                <option value="8">Educational certificate</option>
+                                <option value="9">Electors photo identity card</option>
+                                <option value="10">Electricity bill</option>
+                                <option value="11">Gazetted officer issued documents</option>
+                                <option value="12">Gas connection details</option>
+                                <option value="13">Letter from employer</option>
+                                <option value="14">Marriage certificate</option>
+                                <option value="15">MNREGA Job card</option>
+                                <option value="16">PAN card</option>
+                                <option value="17">Passport</option>
+                                <option value="18">Pension card</option>
+                                <option value="19">Photo credit card</option>
+                                <option value="20">Rent agreement</option>
+                                <option value="21">Ration card</option>
+                                <option value="22">Tax card</option>
+                                <option value="23">Telephone bill</option>
+                                <option value="24">Voter ID</option>
+                            </select>
+                        </div>
+
+                        <!-- File Upload -->
+                        <div class="mb-4">
+                            ${doc.fileUrl ? `<p>Already uploaded: <a href="${doc.fileUrl}" target="_blank">${doc.documentName}</a></p>` : ''}
+                            <label for="edit-document-page-document-upload" class="form-label">Upload your new document</label>
+                            <input type="file" class="form-control" id="edit-document-page-document-upload" name="document" accept="application/pdf, image/*">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button id="edit-document-page-submit-button" type="submit" class="btn btn-primary btn-lg">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>`;
     // Now select the option based on TEXT
     const selectElement = document.getElementById('edit-document-page-type-of-document');
     const options = selectElement.options;
