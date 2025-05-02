@@ -80,21 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
 	const verifyOTPButton = document.getElementById('verify-otp-button');
 
 	// Initialize reCAPTCHA once on DOM ready
-	window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-		'size': 'invisible', // You can use 'normal' for visible checkbox
-		'callback': (response) => {
-			console.log('reCAPTCHA solved:', response);
-			sendOTP(); // proceed only after reCAPTCHA is solved
-		},
-		'expired-callback': () => {
-			console.log('reCAPTCHA expired. Please solve again.');
-		}
-	}, auth);
-
-	// Renders the invisible reCAPTCHA
-	window.recaptchaVerifier.render().then(widgetId => {
-		window.recaptchaWidgetId = widgetId;
-	});
+	if(!window.recaptchaVerifier){
+		window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+			'size': 'invisible', // You can use 'normal' for visible checkbox
+			'callback': (response) => {
+				console.log('reCAPTCHA solved:', response);
+				sendOTP(); // proceed only after reCAPTCHA is solved
+			},
+			'expired-callback': () => {
+				console.log('reCAPTCHA expired. Please solve again.');
+			}
+		}, auth);
+	
+		// Renders the invisible reCAPTCHA
+		window.recaptchaVerifier.render().then(widgetId => {
+			window.recaptchaWidgetId = widgetId;
+		});
+	}
+	
 
 	// Click handler for sending OTP
 	sendOTPButton.addEventListener('click', (e) => {
