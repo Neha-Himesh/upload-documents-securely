@@ -42,22 +42,23 @@ async function displayDocuments() {
             const documentToBeEditedData = encodeURIComponent(JSON.stringify(doc)); 
             // Create a real div element
             const documentCard = document.createElement('div');
-            documentCard.className = 'document-card mb-3';
-            if(index % 2 != 0){
+             /*         <div class="row">*/
+            if(index % 2 == 0){
+                documentCard.className = 'document-card mb-3 row';
                 documentCard.innerHTML = `
-                    <div class="row">
+           
                         <div class="col-sm-4">
                             <div class="card">
                                 <div class="text-center">
                                     <img src="${doc.fileUrl}" alt="${doc.documentName}" width="100" />
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">${doc.documentName}</h5>
-                                    <p class="card-text text-center">Type: ${doc.documentType}</p>
-                                    <p class="card-text text-center">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
-                                    <p class="card-text text-center">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-3">
+                                    <h3 class="card-title text-center mb-3">${doc.documentName}</h3>
+                                    <p class="card-text text-center fs-5">Type: ${doc.documentType}</p>
+                                    <p class="card-text text-center fs-5">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
+                                    <p class="card-text text-center fs-5">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
+                                     <div class="row justify-content-center mb-4">
+                                        <div class="col-5 offset-1">
                                             <a href="${doc.fileUrl}" class="btn btn-primary">View the image</a>
                                         </div> 
                                     </div>
@@ -74,27 +75,27 @@ async function displayDocuments() {
                                     </div>    
                                 </div>
                             </div>
-                        </div>
-                    </div>     
+                       
                 `;
             } else{
+                documentCard.className = 'document-card mb-3 col-sm-4';
                 documentCard.innerHTML = `
-                        <div class="col-sm-6">
+                       
                             <div class="card">
                                <div class="text-center">
                                     <img src="${doc.fileUrl}" alt="${doc.documentName}" width="100" />
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">${doc.documentName}</h5>
-                                    <p class="card-text text-center">Type: ${doc.documentType}</p>
-                                    <p class="card-text text-center">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
-                                    <p class="card-text text-center">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-3">
+                                    <h3 class="card-title text-center mb-3">${doc.documentName}</h3>
+                                    <p class="card-text text-center fs-5">Type: ${doc.documentType}</p>
+                                    <p class="card-text text-center fs-5">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
+                                    <p class="card-text text-center fs-5">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
+                                    <div class="row justify-content-center mb-4">
+                                        <div class="col-5 offset-1">
                                             <a href="${doc.fileUrl}" class="btn btn-primary">View the image</a>
                                         </div> 
                                     </div>
-                                   <div class="row justify-content-center">
+                                    <div class="row justify-content-center">
                                         <div class="col-2 offset-1">
                                             <img class="view-documents-edit-icon" src="images/edit_icon.png" width="40%" style="cursor: pointer;">
                                         </div>
@@ -108,7 +109,6 @@ async function displayDocuments() {
                                 </div>
                             </div>
                         </div> 
-                    </div>
                 `;
             }
         
@@ -152,23 +152,24 @@ async function displayDocuments() {
             const documentToBeEditedData = encodeURIComponent(JSON.stringify(doc)); 
             // Create a real div element
             const documentCard = document.createElement('div');
-            documentCard.className = 'document-card mb-3';
+            
             if (index != documents.length - 1){
                 if(index % 2 != 0){
+                    documentCard.className = 'document-card mb-3 row';
                     documentCard.innerHTML = `
-                        <div class="row">
-                            <div class="col-sm-6">
+                        
+                            <div class="col-sm-4">
                                 <div class="card">
                                     <div class="text-center">
                                         <img src="${doc.fileUrl}" alt="${doc.documentName}" width="100" />
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title text-center">${doc.documentName}</h5>
-                                        <p class="card-text text-center">Type: ${doc.documentType}</p>
-                                        <p class="card-text text-center">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
-                                        <p class="card-text text-center">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
-                                        <div class="row justify-content-center mb-3">
-                                            <div class="col-3">
+                                        <h3 class="card-title text-center mb-3">${doc.documentName}</h3>
+                                        <p class="card-text text-center fs-5">Type: ${doc.documentType}</p>
+                                        <p class="card-text text-center fs-5">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
+                                        <p class="card-text text-center fs-5">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
+                                        <div class="row justify-content-center mb-4">
+                                            <div class="col-5 offset-1">
                                                 <a href="${doc.fileUrl}" class="btn btn-primary">View the image</a>
                                             </div>    
                                         </div>
@@ -185,28 +186,28 @@ async function displayDocuments() {
                                         </div>  
                                     </div>
                                 </div>
-                            </div> 
                     `;
                 } else{
+                    documentCard.className = 'document-card mb-3 col-sm-4';
                     documentCard.innerHTML = `
-                            <div class="col-sm-6">
+                         
                                 <div class="card border">
-                                    <div class="text-center">
+                                    <div class="text-center mb-2">
                                         <img src="${doc.fileUrl}" alt="${doc.documentName}" width="100" />
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title text-center">${doc.documentName}</h5>
-                                        <p class="card-text text-center">Type: ${doc.documentType}</p>
-                                        <p class="card-text text-center">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
-                                        <p class="card-text text-center">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
+                                        <h3 class="card-title text-center mb-3">${doc.documentName}</h3>
+                                        <p class="card-text text-center fs-5">Type: ${doc.documentType}</p>
+                                        <p class="card-text text-center fs-5">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
+                                        <p class="card-text text-center fs-5">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
 
-                                        <div class="row justify-content-center mb-3">
-                                            <div class="col-3">
+                                        <div class="row justify-content-center mb-4">
+                                            <div class="col-5 offset-1">
                                                 <a href="${doc.fileUrl}" class="btn btn-primary">View the image</a>
                                             </div> 
                                         </div>
-                                        <div class="row justify-content-center">
-                                            <div class="col-2 offset-1">
+                                        <div class="row justify-content-center mb-4">
+                                            <div class="col-5 offset-1">
                                                 <img class="view-documents-edit-icon" src="images/edit_icon.png" width="40%" style="cursor: pointer;">
                                             </div>
                                             <div class="col-2">
@@ -219,25 +220,25 @@ async function displayDocuments() {
                                     </div>
                                 </div>
                             </div> 
-                        </div>
                     `;
                 }
             
             } else {
+                documentCard.className = 'document-card mb-3 row justify-content-center';
                 documentCard.innerHTML = `
-                    <div class="row justify-content-center">
-                        <div class="col-sm-6">
+     
+                        <div class="col-sm-4">
                             <div class="card border">
                                 <div class="text-center">
                                     <img src="${doc.fileUrl}" alt="${doc.documentName}" width="100" />
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">${doc.documentName}</h5>
-                                    <p class="card-text text-center">Type: ${doc.documentType}</p>
-                                    <p class="card-text text-center">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
-                                    <p class="card-text text-center">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-3">
+                                    <h3 class="card-title text-center mb-3">${doc.documentName}</h3>
+                                    <p class="card-text text-center fs-5">Type: ${doc.documentType}</p>
+                                    <p class="card-text text-center fs-5">Uploaded At: ${doc.uploadedAt?.toDate().toLocaleString() || "Unknown"}</p>
+                                    <p class="card-text text-center fs-5">Updated At: ${doc.updatedAt?.toDate().toLocaleString() || " - "}</p>
+                                    <div class="row justify-content-center mb-4">
+                                        <div class="col-5 offset-1">
                                             <a href="${doc.fileUrl}" class="btn btn-primary">View the image</a>
                                         </div> 
                                     </div>
@@ -255,7 +256,6 @@ async function displayDocuments() {
                                 </div>
                             </div>
                         </div>
-                    </div> 
                 `;
             }
             
