@@ -72,27 +72,6 @@ window.onload = function() {
 function editDocument(doc){
     document.getElementById('edit-document-page-container').innerHTML = 
     ` 
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid container">
-            <a class="navbar-brand user-home-page-username-display" href="#"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav nav nav-pills ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="Logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="container">
         <div class="row m-3">
             <div class="col-12 row mb-5 align-items-center justify-content-center">

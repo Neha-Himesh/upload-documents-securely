@@ -133,11 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		e.preventDefault();
 		const code = document.getElementById("otp").value;
 
-		if (!confirmationResult) {
-			alert("OTP has not been sent yet.");
-			return;
-		}
-
+		
 		confirmationResult.confirm(code)
 			.then(async (result) => {
 				// alert("OTP verified. Redirecting...");
@@ -173,6 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				console.error("Error verifying OTP:", error);
 				alert("Incorrect OTP or verification failed.");
 			});
+		if (!confirmationResult) {
+			alert("OTP has not been sent yet.");
+			return;
+		}
+	
 	});
 });
 
