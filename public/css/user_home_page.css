@@ -71,3 +71,29 @@
     font-size: 1.5rem;
     font-weight: bold;
 }
+/* Navbar background and text */
+.custom-navbar {
+    background-color: #1f1f1f; /* rich dark gray */
+  }
+  
+  .custom-navbar .nav-link {
+    color: #f2f2f2 !important;
+    margin: 0 5px;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, border 0.3s ease;
+  }
+  
+  /* Hover state for all nav links */
+  .custom-navbar .nav-link:hover {
+    background-color: #333333;
+    color: #ffffff !important;
+  }
+  
+  /* Active nav pill without Bootstrap blue */
+  .custom-navbar .nav-link.active {
+    background-color: transparent;
+    border: 2px solid #FF8C32; /* use your theme’s orange */
+    color: #FF8C32 !important;
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,64 @@
+/*  CARD  */
+.card{
+    background:#FFF5EB;
+    border:1px solid #FFE2C6;
+    border-radius:.75rem;
+    box-shadow:0 .5rem 1rem rgba(0,0,0,.06);
+  }
+  
+  /*  HEADINGS & TEXT  */
+  .card-title{
+    color:#262626;
+    font-weight:600;
+  }
+  .card-text{
+    color:#5F4B3B;
+  }
+  
+  /*  BUTTON  */
+  .btn-primary{
+    background:#FF8C32;
+    border:none;
+    color:#FFFFFF;
+  }
+  .btn-primary:hover{
+    background:#FF7420;
+  }
+  
+  /*  ICONS  */
+  .view-documents-edit-icon,
+  .view-documents-share-icon{
+    filter: brightness(0) saturate(100%) invert(15%) sepia(24%) saturate(624%) hue-rotate(344deg) brightness(93%) contrast(89%);
+    /* renders icons in cocoa‑brown without needing separate pngs */
+  }
+  
+  .view-documents-delete-icon{
+    filter: brightness(0) saturate(100%) invert(34%) sepia(93%) saturate(1491%) hue-rotate(354deg) brightness(97%) contrast(106%);
+  }
+  
+  /* Navbar background and text */
+.custom-navbar {
+    background-color: #1f1f1f; /* rich dark gray */
+  }
+  
+  .custom-navbar .nav-link {
+    color: #f2f2f2 !important;
+    margin: 0 5px;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, border 0.3s ease;
+  }
+  
+  /* Hover state for all nav links */
+  .custom-navbar .nav-link:hover {
+    background-color: #333333;
+    color: #ffffff !important;
+  }
+  
+  /* Active nav pill without Bootstrap blue */
+  .custom-navbar .nav-link.active {
+    background-color: transparent;
+    border: 2px solid #FF8C32; /* use your theme’s orange */
+    color: #FF8C32 !important;
+    font-weight: bold;
+  }
+  
