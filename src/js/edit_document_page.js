@@ -1,8 +1,15 @@
-import { db, storage } from './setup.js';
+import { db, storage } from './js/setup.js';
 import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc as firestoreDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { highlightActiveNav } from './js/navbar.js';
 
 window.onload = function() {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (!userData || !userData.phone) {
+        alert("User session expired. Please log in again.");
+        window.location.href = "index.html";
+        return;
+    }
     const docString = localStorage.getItem('documentToBeEdited');
     if (docString) {
         const doc = JSON.parse(docString);
@@ -11,6 +18,10 @@ window.onload = function() {
         alert("No document found to edit!");
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    highlightActiveNav();
+});
 
 function editDocument(doc){
     document.getElementById('edit-document-page-container').innerHTML = 

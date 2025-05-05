@@ -4,12 +4,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   	entry: {
-		index: './src/index.js', // Your main JavaScript file
-		upload_page: './src/upload_page.js',
-		view_documents_page: './src/view_documents_page.js',
-		edit_document_page: './src/edit_document_page.js',
-		register_profile_page: './src/register_profile_page.js',
-		user_home_page: './src/user_home_page.js'
+		index: './src/js/index.js', // Your main JavaScript file
+		upload_page: './src/js/upload_page.js',
+		view_documents_page: './src/js/view_documents_page.js',
+		edit_document_page: './src/js/edit_document_page.js',
+		register_profile_page: './src/js/register_profile_page.js',
+		user_home_page: './src/js/user_home_page.js'
 	},
 	output: {
 		filename: '[name].bundle.js', // The name of your bundled JavaScript file

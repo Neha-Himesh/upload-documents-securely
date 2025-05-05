@@ -1,6 +1,7 @@
-import {db, storage, auth} from './setup.js';
+import {db, storage, auth} from './js/setup.js';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { highlightActiveNav } from './js/navbar.js';
 
 const documentUploadPageSubmitButton = document.getElementById('document-upload-page-submit');
 
@@ -71,5 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("Submit event triggered");
         });
     // }
+
+    highlightActiveNav();
         
 });

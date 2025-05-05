@@ -1,7 +1,11 @@
-import { db } from './setup.js';
+import { db } from './js/setup.js';
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { deleteDocument } from './delete_document.js';
+import { deleteDocument } from './js/delete_document.js';
+import { highlightActiveNav } from './js/navbar.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+    highlightActiveNav();
+});
 
 async function fetchDocuments() {
     const userData = JSON.parse(sessionStorage.getItem('userData'));

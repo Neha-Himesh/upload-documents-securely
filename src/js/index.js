@@ -1,6 +1,7 @@
-import { auth, RecaptchaVerifier } from './setup.js';
+
+import { auth, RecaptchaVerifier } from './js/setup.js';
 import { signInWithPhoneNumber } from 'firebase/auth';
-import { db } from './setup.js'; // Firestore database
+import { db } from './js/setup.js'; // Firestore database
 import { doc, getDoc } from "firebase/firestore"; // Firestore functions
 
 let confirmationResult;
@@ -62,7 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	verifyOTPButton.addEventListener('click', (e) => {
 		e.preventDefault();
 		const code = document.getElementById("otp").value;
-
+		if (!confirmationResult) {
+			alert("OTP has not been sent yet.");
+			return;
+		  }
 		
 		confirmationResult.confirm(code)
 			.then(async (result) => {

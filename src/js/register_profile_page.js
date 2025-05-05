@@ -1,5 +1,5 @@
-import { db } from './setup.js'; // your Firestore setup
-import { auth } from './setup.js';
+import { db } from './js/setup.js'; // your Firestore setup
+import { auth } from './js/setup.js';
 import { doc, setDoc } from "firebase/firestore";
 
 document.addEventListener('DOMContentLoaded', () => {

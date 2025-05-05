@@ -1,11 +1,21 @@
-import { parseDocumentToBeEdited } from "./edit_document_page";
-import { db, storage } from './setup.js';
+import { parseDocumentToBeEdited } from "./js/edit_document_page.js";
+import { db, storage } from './js/setup.js';
 import { ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { doc as firestoreDoc, updateDoc, serverTimestamp, deleteDoc } from "firebase/firestore";
-
+import { highlightActiveNav  } from "./navbar.js";
 
 window.onload = parseDocumentToBeEdited;
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (!userData || !userData.phone) {
+        alert("User session expired. Please log in again.");
+        window.location.href = "index.html";
+        return;
+    }
+    highlightActiveNav();
+});
 
 function getFilePathFromURL(url) {
     const baseUrl = "https://firebasestorage.googleapis.com/v0/b/upload-25f01.appspot.com/o/";
