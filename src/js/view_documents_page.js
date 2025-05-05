@@ -1,7 +1,7 @@
-import { db } from './js/setup.js';
+import { db } from './setup.js';
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { deleteDocument } from './js/delete_document.js';
-import { highlightActiveNav } from './js/navbar.js';
+import { deleteDocument } from './delete_document.js';
+import { highlightActiveNav } from './navbar.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     highlightActiveNav();

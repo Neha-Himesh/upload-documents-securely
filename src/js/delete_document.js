@@ -1,5 +1,5 @@
-import { parseDocumentToBeEdited } from "./js/edit_document_page.js";
-import { db, storage } from './js/setup.js';
+import { parseDocumentToBeEdited } from "./edit_document_page.js";
+import { db, storage } from './setup.js';
 import { ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { doc as firestoreDoc, updateDoc, serverTimestamp, deleteDoc } from "firebase/firestore";
 import { highlightActiveNav  } from "./navbar.js";

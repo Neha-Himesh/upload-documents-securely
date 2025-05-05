@@ -1,7 +1,7 @@
-import { db, storage } from './js/setup.js';
+import { db, storage } from './setup.js';
 import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc as firestoreDoc, updateDoc, serverTimestamp } from "firebase/firestore";
-import { highlightActiveNav } from './js/navbar.js';
+import { highlightActiveNav } from './navbar.js';
 
 window.onload = function() {
     const userData = JSON.parse(sessionStorage.getItem('userData'));

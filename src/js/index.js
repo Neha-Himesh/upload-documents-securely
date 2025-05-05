@@ -1,7 +1,6 @@
 
-import { auth, RecaptchaVerifier } from './js/setup.js';
+import { auth, RecaptchaVerifier, db } from './setup.js';
 import { signInWithPhoneNumber } from 'firebase/auth';
-import { db } from './js/setup.js'; // Firestore database
 import { doc, getDoc } from "firebase/firestore"; // Firestore functions
 
 let confirmationResult;
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			'size': 'invisible', // You can use 'normal' for visible checkbox
 			'callback': (response) => {
 				console.log('reCAPTCHA solved:', response);
-				sendOTP(); // proceed only after reCAPTCHA is solved
+				// sendOTP(); // proceed only after reCAPTCHA is solved
 			},
 			'expired-callback': () => {
 				console.log('reCAPTCHA expired. Please solve again.');
@@ -33,10 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Click handler for sending OTP
 	sendOTPButton.addEventListener('click', (e) => {
 		e.preventDefault();
+		// sendOTP();
 		window.recaptchaVerifier.verify() // triggers reCAPTCHA and then callback will call sendOTP()
 			.then((token) => {
 				console.log("Token received from .verify():", token); // <-- ✅
-				// You can optionally call sendOTP() here instead of in callback
+				sendOTP();
 			})
 			.catch(err => {
 				console.error("reCAPTCHA verification error", err);
@@ -63,11 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	verifyOTPButton.addEventListener('click', (e) => {
 		e.preventDefault();
 		const code = document.getElementById("otp").value;
+		
 		if (!confirmationResult) {
 			alert("OTP has not been sent yet.");
 			return;
-		  }
-		
+		}
 		confirmationResult.confirm(code)
 			.then(async (result) => {
 				// alert("OTP verified. Redirecting...");
@@ -103,10 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				console.error("Error verifying OTP:", error);
 				alert("Incorrect OTP or verification failed.");
 			});
-		if (!confirmationResult) {
-			alert("OTP has not been sent yet.");
-			return;
-		}
+		
 	
 	});
 });

@@ -1,6 +1,6 @@
-import { auth } from './js/setup.js';
+import { auth } from './setup.js';
 import { signOut } from 'firebase/auth';
-import { highlightActiveNav } from './js/navbar.js';
+import { highlightActiveNav } from './navbar.js';
 
 export function LogoutUserSession() {
 	document.addEventListener('DOMContentLoaded', () => {
