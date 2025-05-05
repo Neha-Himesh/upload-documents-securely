@@ -15,13 +15,6 @@ function getFilePathFromURL(url) {
 }
 
 export async function deleteDocument(doc){
-    // const documentToBeDeletedString = localStorage.getItem('documentToBeEdited');
-    // if (!documentToBeDeletedString) {
-    //     alert('No document to edit.');
-    //     return;
-    // }
-    // const documentToBeDeleted = JSON.parse(documentToBeDeletedString);
-    // const documentToBeDeletedFile = documentToBeDeleted.fileUrl;
     const confirmDelete = confirm(`Are you sure you want to permanently delete "${doc.documentName}"?`);
     
     if (!confirmDelete) {
