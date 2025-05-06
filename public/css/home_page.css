@@ -60,6 +60,9 @@ input{
     text-align: center; 
     font-size: 13px; 
 }
+.font-weight-1000{
+    font-weight: 1000;
+}
 @media (max-width: 600px) {
     body, #message { 
         margin-top: 0; 
