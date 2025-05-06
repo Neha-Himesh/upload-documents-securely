@@ -6,7 +6,7 @@ import { logoutUserSession } from './logout_session.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     highlightActiveNav();
-    logoutUserSession();
+   
 });
 
 async function fetchDocuments() {
@@ -118,5 +118,5 @@ async function displayDocuments() {
     }
 }
 
-
+logoutUserSession();
 displayDocuments();

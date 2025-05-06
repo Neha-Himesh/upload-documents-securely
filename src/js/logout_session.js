@@ -5,6 +5,7 @@ export function logoutUserSession() {
 	document.addEventListener('DOMContentLoaded', () => {
 		const userData = JSON.parse(sessionStorage.getItem('userData'));
 		const logoutBtn = document.getElementById('logout');
+        console.log("Logout() function is being executed");
 		console.log(logoutBtn);
 		if (!userData) {
 			alert("Session expired. Please log in again.");
