@@ -4,36 +4,36 @@
     border:1px solid #FFE2C6;
     border-radius:.75rem;
     box-shadow:0 .5rem 1rem rgba(0,0,0,.06);
-  }
+}
   
   /*  HEADINGS & TEXT  */
-  .card-title{
-    color:#262626;
-    font-weight:600;
-  }
-  .card-text{
-    color:#5F4B3B;
-  }
+.card-title{
+	color:#262626;
+	font-weight:600;
+}
+.card-text{
+  	color:#5F4B3B;
+}
   
   /*  BUTTON  */
-  .btn-primary{
+.btn-primary{
     background:#FF8C32;
     border:none;
     color:#FFFFFF;
-  }
-  .btn-primary:hover{
+}
+.btn-primary:hover{
     background:#FF7420;
-  }
+}
   
   /*  ICONS  */
-  .view-documents-edit-icon,
-  .view-documents-share-icon{
-    filter: brightness(0) saturate(100%) invert(15%) sepia(24%) saturate(624%) hue-rotate(344deg) brightness(93%) contrast(89%);
+.view-documents-edit-icon,
+.view-documents-share-icon{
+	filter: brightness(0) saturate(100%) invert(15%) sepia(24%) saturate(624%) hue-rotate(344deg) brightness(93%) contrast(89%);
     /* renders icons in cocoa‑brown without needing separate pngs */
-  }
+}
   
-  .view-documents-delete-icon{
+.view-documents-delete-icon{
     filter: brightness(0) saturate(100%) invert(34%) sepia(93%) saturate(1491%) hue-rotate(354deg) brightness(97%) contrast(106%);
-  }
+}
   
   

@@ -17,7 +17,7 @@ export function logoutUserSession() {
 		const loggedInUserNameInNavbar = document.querySelector('.user-home-page-username-display-in-navbar');
 		const loggedInUserNameInWelcomeElement = document.querySelector('.user-home-page-username-display-in-welcome-element');
 		loggedInUserNameInNavbar.textContent = userData.name ;
-		loggedInUserNameInWelcomeElement.textContent = "Hi " + userData.name + ",";
+		loggedInUserNameInWelcomeElement ? loggedInUserNameInWelcomeElement.textContent = "Hi " + userData.name + "," : null;
 		
 		logoutBtn.addEventListener('click', async () => {
 			try {

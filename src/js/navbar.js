@@ -10,4 +10,4 @@ export function highlightActiveNav() {
         link.classList.remove("active");
       }
     });
-  }
+}
