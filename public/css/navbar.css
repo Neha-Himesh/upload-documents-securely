@@ -31,3 +31,6 @@
 .user-home-page-username-display-in-navbar:hover{
 	color: white;
 }
+.navbar-toggler{
+	background-color: white;
+}
