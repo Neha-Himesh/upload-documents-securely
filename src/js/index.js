@@ -1,168 +1,67 @@
-
-// import { auth, RecaptchaVerifier, db } from './setup.js';
-// import { signInWithPhoneNumber } from 'firebase/auth';
-// import { doc, getDoc } from "firebase/firestore"; // Firestore functions
-
-// let confirmationResult;
-
-// document.addEventListener('DOMContentLoaded', () => {
-// 	const sendOTPButton = document.getElementById('send-otp-button');
-// 	const verifyOTPButton = document.getElementById('verify-otp-button');
-
-// 	// Initialize reCAPTCHA once on DOM ready
-// 	if(!window.recaptchaVerifier || !window.recaptchaWidgetId){
-// 		window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-// 			'size': 'invisible', // You can use 'normal' for visible checkbox
-// 			'callback': (response) => {
-// 				console.log('reCAPTCHA solved:', response);
-// 				// sendOTP(); // proceed only after reCAPTCHA is solved
-// 			},
-// 			'expired-callback': () => {
-// 				console.log('reCAPTCHA expired. Please solve again.');
-// 			}
-// 		}, auth);
-	
-// 		// Renders the invisible reCAPTCHA
-// 		window.recaptchaVerifier.render().then(widgetId => {
-// 			window.recaptchaWidgetId = widgetId;
-// 		});
-// 	}
-	
-
-// 	// Click handler for sending OTP
-// 	sendOTPButton.addEventListener('click', (e) => {
-// 		e.preventDefault();
-// 		// sendOTP();
-// 		window.recaptchaVerifier.verify() // triggers reCAPTCHA and then callback will call sendOTP()
-// 			.then((token) => {
-// 				console.log("Token received from .verify():", token); // <-- ✅
-// 				sendOTP();
-// 			})
-// 			.catch(err => {
-// 				console.error("reCAPTCHA verification error", err);
-// 			});
-// 	});
-
-// 	// Function to send OTP (called from reCAPTCHA callback)
-// 	function sendOTP() {
-// 		const phone = document.getElementById("phone").value;
-// 		const appVerifier = window.recaptchaVerifier;
-
-// 		signInWithPhoneNumber(auth, phone, appVerifier)
-// 			.then((result) => {
-// 				confirmationResult = result;
-// 				alert("OTP sent successfully.");
-// 			})
-// 			.catch((error) => {
-// 				console.error("Error during signInWithPhoneNumber:", error);
-// 				alert("Failed to send OTP. Check console for details.");
-// 			});
-// 	}
-
-// 	// Click handler for verifying OTP
-// 	verifyOTPButton.addEventListener('click', (e) => {
-// 		e.preventDefault();
-// 		const code = document.getElementById("otp").value;
-		
-// 		if (!confirmationResult) {
-// 			alert("OTP has not been sent yet.");
-// 			return;
-// 		}
-// 		confirmationResult.confirm(code)
-// 			.then(async (result) => {
-// 				// alert("OTP verified. Redirecting...");
-// 				// setTimeout(() => {
-// 				// 	window.location.href = '/user_home_page.html';
-// 				// }, 500);
-// 				alert("OTP verified. Fetching user details...");
-// 				const user = result.user;
-// 				console.log("User signed in:", user);
-
-// 				// Now fetch user data from Firestore
-// 				const userRef = doc(db, "users", user.phoneNumber);
-// 				const userSnap = await getDoc(userRef);
-
-// 				if (userSnap.exists()) {
-// 					const userData = userSnap.data();
-// 					console.log("User data:", userData);
-
-// 					// Save data to sessionStorage or localStorage to use on next page
-// 					sessionStorage.setItem('userData', JSON.stringify(userData));
-
-// 					setTimeout(() => {
-// 						window.location.href = '/user_home_page.html';
-// 					}, 500);
-// 				} else {
-// 					alert("No user data found. Please complete your profile.");
-
-// 					// Redirect to a page where user fills in details
-// 					window.location.href = '/register_profile_page.html';
-// 				}
-// 			})
-// 			.catch((error) => {
-// 				console.error("Error verifying OTP:", error);
-// 				alert("Incorrect OTP or verification failed.");
-// 			});
-		
-	
-// 	});
-// });
-
+// Import Firebase Authentication, reCAPTCHA, and Firestore
 import { auth, RecaptchaVerifier, db } from './setup.js';
+// Import Firebase Authentication function for signing in with phone number
 import { signInWithPhoneNumber } from 'firebase/auth';
-import { doc, getDoc } from "firebase/firestore"; // Firestore functions
+// Import Firestore functions for accessing user data
+import { doc, getDoc } from "firebase/firestore";
 
-let confirmationResult;
+let confirmationResult; // Stores OTP confirmation result for verification
 
+// Execute after the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Get reference to the Send OTP and Verify OTP buttons
     const sendOTPButton = document.getElementById('send-otp-button');
     const verifyOTPButton = document.getElementById('verify-otp-button');
 
-    let recaptchaInitialized = false; // Flag to track initialization
+    let recaptchaInitialized = false; // Flag to prevent reinitialization
 
-    // Initialize reCAPTCHA once on DOM ready
-    if(!window.recaptchaVerifier || !window.recaptchaWidgetId){
+    // Initialize Firebase reCAPTCHA (invisible by default)
+    if (!window.recaptchaVerifier || !window.recaptchaWidgetId) {
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-            'size': 'invisible', // You can use 'normal' for visible checkbox
+            'size': 'invisible', // Use 'normal' for visible checkbox if needed
             'callback': (response) => {
+                // reCAPTCHA solved — token received
                 console.log('reCAPTCHA solved:', response);
-                // sendOTP(); // proceed only after reCAPTCHA is solved
             },
             'expired-callback': () => {
+                // Called when reCAPTCHA expires
                 console.log('reCAPTCHA expired. Please solve again.');
             }
         }, auth);
 
-        // Renders the invisible reCAPTCHA
+        // Render the reCAPTCHA widget and store the widget ID
         window.recaptchaVerifier.render().then(widgetId => {
             window.recaptchaWidgetId = widgetId;
-            recaptchaInitialized = true; // Set flag after successful rendering
+            recaptchaInitialized = true;
         });
     } else {
-        recaptchaInitialized = true; // If already initialized
+        recaptchaInitialized = true;
     }
 
-
-    // Click handler for sending OTP
+    // Send OTP when "Send OTP" button is clicked
     sendOTPButton.addEventListener('click', (e) => {
         e.preventDefault();
+
+        // Ensure reCAPTCHA is ready
         if (!recaptchaInitialized) {
             console.error("reCAPTCHA not yet initialized.");
             alert("reCAPTCHA is still loading. Please try again in a moment.");
             return;
         }
-        window.recaptchaVerifier.verify() // triggers reCAPTCHA and then callback will call sendOTP()
+
+        // Trigger reCAPTCHA verification and call sendOTP on success
+        window.recaptchaVerifier.verify()
             .then((token) => {
-                console.log("Token received from .verify():", token); // <-- ✅
-                sendOTP();
+                console.log("Token received from .verify():", token);
+                sendOTP(); // Proceed to send OTP
             })
             .catch(err => {
                 console.error("reCAPTCHA verification error", err);
-                alert("reCAPTCHA verification failed. Please try again."); // Inform user about reCAPTCHA failure
+                alert("reCAPTCHA verification failed. Please try again.");
             });
     });
 
-    // Function to send OTP (called after reCAPTCHA verification)
+    // Function to send OTP to the entered phone number
     async function sendOTP() {
         const phone = document.getElementById("phone").value;
 
@@ -175,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const appVerifier = window.recaptchaVerifier;
             const result = await signInWithPhoneNumber(auth, phone, appVerifier);
-            confirmationResult = result;
+            confirmationResult = result; // Store confirmation result globally
             alert("OTP sent successfully.");
         } catch (error) {
             console.error("Error during signInWithPhoneNumber:", error);
@@ -183,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Click handler for verifying OTP
+    // Verify OTP when "Verify OTP" button is clicked
     verifyOTPButton.addEventListener('click', (e) => {
         e.preventDefault();
         const code = document.getElementById("otp").value;
@@ -192,38 +91,39 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("OTP has not been sent yet.");
             return;
         }
+
+        // Attempt to verify the entered OTP
         confirmationResult.confirm(code)
             .then(async (result) => {
                 alert("OTP verified. Fetching user details...");
                 const user = result.user;
                 console.log("User signed in:", user);
 
-                // Now fetch user data from Firestore
+                // Fetch user data from Firestore using phone number
                 const userRef = doc(db, "users", user.phoneNumber);
                 const userSnap = await getDoc(userRef);
 
                 if (userSnap.exists()) {
+                    // If user data exists, save to session storage and redirect
                     const userData = userSnap.data();
                     console.log("User data:", userData);
 
-                    // Save data to sessionStorage or localStorage to use on next page
                     sessionStorage.setItem('userData', JSON.stringify(userData));
 
+                    // Redirect to user home page after short delay
                     setTimeout(() => {
                         window.location.href = '/user_home_page.html';
                     }, 500);
                 } else {
+                    // If no user data exists, redirect to registration page
                     alert("No user data found. Please complete your profile.");
-
-                    // Redirect to a page where user fills in details
                     window.location.href = '/register_profile_page.html';
                 }
             })
             .catch((error) => {
+                // Handle OTP verification failure
                 console.error("Error verifying OTP:", error);
                 alert("Incorrect OTP or verification failed.");
             });
-
-
     });
 });

@@ -1,57 +1,59 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Complete Your Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-</head>
-<body>
-    <h2>Complete Your Profile</h2>
-    <form id="register-page-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" required><br><br>
-
-        <button type="submit">Save Profile</button>
-    </form>
- 
-    <script type="module" src="register_profile_page.bundle.js">
-        
-    </script>
-</body>
-</html>   -->
+<!-- The document type declaration specifies that this is an HTML5 document -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- The character encoding for the page is set to UTF-8 for wide compatibility -->
     <meta charset="UTF-8">
+
+    <!-- Title displayed in the browser's tab -->
     <title>Complete Your Profile</title>
+
+    <!-- Viewport meta tag for responsive design on different devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
+
+    <!-- Linking to Bootstrap 5 CSS for responsive design and default styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <!-- Your CSS for background and styling -->
+
+    <!-- Your custom CSS file for additional styling -->
     <link href="/css/home_page.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Main container that holds the page content -->
     <div class="container">
         <div class="row m-3">
+
+            <!-- Column to center-align content and adjust the layout -->
             <div class="col-12 row mb-5 align-items-center justify-content-center">
+
+                <!-- Section to display profile completion message -->
                 <div id="message" class="col-lg-7 col-md-10 col-12 my-3 p-md-5 p-3">
                     
+                    <!-- Informational text displayed at the top of the form -->
                     <p id="load" class="fs-3 p-3 m-3 text-center">You're almost there!</p> 
+
+                    <!-- Main heading indicating to complete the profile -->
                     <h1 class="p-3 text-center">Complete Your Profile</h1>
+
+                    <!-- Subheading explaining the next step of registration -->
                     <h2 class="p-3 fs-4 text-center">Enter your name and email to finish registration</h2>
 
+                    <!-- Form for users to input their name and email -->
                     <form id="register-page-form">
+                        
+                        <!-- Name input field with label and custom Bootstrap styling -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Name:</label>
                             <input type="text" id="name" class="form-control p-3" required style="font-size: 20px;">
                         </div>
+
+                        <!-- Email input field with label and custom Bootstrap styling -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Email:</label>
                             <input type="email" id="email" class="form-control p-3" required style="font-size: 20px;">
                         </div>
+
+                        <!-- Submit button to save the profile information -->
                         <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Save Profile</button>
                     </form>
 
@@ -60,6 +62,7 @@
         </div>
     </div>
 
+    <!-- Linking the JavaScript file that handles form submission and further interactions -->
     <script src="register_profile_page.bundle.js" type="module"></script>
 </body>
 </html>

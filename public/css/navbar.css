@@ -25,5 +25,9 @@
 }
 
 .user-home-page-username-display-in-navbar{
-  color: white;
+  	color: white;
+}
+
+.user-home-page-username-display-in-navbar:hover{
+	color: white;
 }
