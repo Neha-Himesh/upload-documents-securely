@@ -1,36 +1,43 @@
 /* Navbar background and text */
 .custom-navbar {
-    background-color: #1f1f1f; /* rich dark gray */
+    background-color: #1f1f1f; /* rich dark gray for navbar background */
 }
   
+/* Styling for navigation links */
 .custom-navbar .nav-link {
-    color: #f2f2f2 !important;
-    margin: 0 5px;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease, border 0.3s ease;
+    color: #f2f2f2 !important; /* Light grey color for nav links */
+    margin: 0 5px; /* Space between the links */
+    border-radius: 0.5rem; /* Rounded corners for nav items */
+    transition: background-color 0.3s ease, border 0.3s ease; /* Smooth transition for hover effects */
+    border: 2px solid transparent; /* Transparent border for consistent sizing */
 }
-  
-  /* Hover state for all nav links */
+
+/* Hover state for all nav links */
 .custom-navbar .nav-link:hover {
-    background-color: #333333;
-    color: #ffffff !important;
+    background-color: #333333; /* Darker gray background on hover */
+    color: #ffffff !important; /* White text color on hover */
+    border-color: #FF8C32; /* Border color changes to theme orange */
 }
-  
-  /* Active nav pill without Bootstrap blue */
+
+/* Active nav pill without Bootstrap blue */
 .custom-navbar .nav-link.active {
-    background-color: transparent;
-    border: 2px solid #FF8C32; /* use your theme’s orange */
-    color: #FF8C32 !important;
-    font-weight: bold;
+    background-color: transparent; /* No background color for active state */
+    border: 2px solid #FF8C32; /* Orange border for active state */
+    color: #FF8C32 !important; /* Orange text color for active state */
+    font-weight: bold; /* Bold font for active link */
 }
 
-.user-home-page-username-display-in-navbar{
-  	color: white;
+/* Styling for the username display in navbar */
+.user-home-page-username-display-in-navbar {
+    color: white; /* White text color for username */
 }
 
-.user-home-page-username-display-in-navbar:hover{
-	color: white;
+/* Prevent hover color change on the username */
+.user-home-page-username-display-in-navbar:hover {
+    color: white; /* Keep text color white on hover */
 }
-.navbar-toggler{
-	background-color: white;
+
+/* Toggler button (hamburger menu) background */
+.navbar-toggler {
+    background-color: white; /* White background for the toggler */
 }

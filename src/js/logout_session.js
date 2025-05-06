@@ -13,18 +13,12 @@ export function logoutUserSession() {
         // Get reference to the logout button
         const logoutBtn = document.getElementById('logout');
 
-        console.log("Logout() function is being executed");
-        console.log(logoutBtn);
-
         // If session is missing, redirect user to login page
         if (!userData) {
             alert("Session expired. Please log in again.");
             window.location.href = 'index.html';
             return;
         }
-
-        // Log the user's name to the console
-        console.log("Logged-in user:", userData.name);
 
         // Display user's name in navbar (top section)
         const loggedInUserNameInNavbar = document.querySelector('.user-home-page-username-display-in-navbar');

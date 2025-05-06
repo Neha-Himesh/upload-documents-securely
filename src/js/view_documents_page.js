@@ -45,7 +45,6 @@ function openEditPage(docString) {
 // Display the fetched documents on the page
 async function displayDocuments() {
     const documents = await fetchDocuments(); // Get the documents for the logged-in user
-    console.log(`documents: ${documents}`);
     
     // If no documents exist, alert the user and redirect to home page
     if (!documents.length) {

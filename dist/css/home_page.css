@@ -1,75 +1,102 @@
+/* General body styling */
 body { 
-    color: rgba(0,0,0,0.87); 
-    font-family: Roboto, Helvetica, Arial, sans-serif; 
-    margin: 0; 
-    padding: 0; 
-}
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; 
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/documents_image_1.jpeg'); /* Adjust the path */
-    background-size: cover;
-    background-position: center;
-    filter: blur(8px);
-    z-index: -1; /* Behind all content */
+    color: rgba(0,0,0,0.87); /* Set text color */
+    font-family: Roboto, Helvetica, Arial, sans-serif; /* Set font family */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
 }
 
+/* Apply a background image with blur effect */
+body::before {
+    content: ""; /* Empty content to create a pseudo-element */
+    position: fixed; /* Fix it to the viewport */
+    top: 0; /* Position it at the top */
+    left: 0; /* Position it to the left */
+    width: 100%; /* Take full width */
+    height: 100%; /* Take full height */
+    background-image: url('../images/documents_image_1.jpeg'); /* Set background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    filter: blur(8px); /* Apply blur effect */
+    z-index: -1; /* Place it behind all other content */
+}
+
+/* Styling for the #message container */
 #message { 
-    background: white; 
-    max-width: 100%; 
-    border-radius: 6px; 
+    background: white; /* Set background to white */
+    max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+    border-radius: 6px; /* Rounded corners */
 }
+
+/* Header styling within the #message container */
 #message h1 { 
-    color: #ffa100; 
-    font-weight: bold; 
-    margin: 0 0 8px; 
+    color: #ffa100; /* Orange color for main header */
+    font-weight: bold; /* Bold text */
+    margin: 0 0 8px; /* Remove margin at the top and set bottom margin */
 }
+
+/* Styling for sub-headers (h2) inside the #message container */
 #message h2 { 
-    font-weight: 300; 
-    color: rgba(0,0,0,0.6);
+    font-weight: 300; /* Light font weight */
+    color: rgba(0,0,0,0.6); /* Slightly faded black color */
 }
+
+/* Paragraph styling within #message */
 #message p { 
-    line-height: 140%;
-    color: rgb(147, 143, 143);
+    line-height: 140%; /* Set line height for better readability */
+    color: rgb(147, 143, 143); /* Grey color for text */
 }
+
+/* Styling for links within #message */
 #message a { 
-    display: block;
-    text-align: center; 
-    background: #039be5; 
-    text-transform: uppercase; 
-    text-decoration: none;
-    color: white; 
-    padding: 16px; 
-    border-radius: 4px; 
+    display: block; /* Make the link block-level */
+    text-align: center; /* Center-align text */
+    background: #039be5; /* Blue background color */
+    text-transform: uppercase; /* Uppercase text */
+    text-decoration: none; /* Remove underline */
+    color: white; /* White text color */
+    padding: 16px; /* Add padding */
+    border-radius: 4px; /* Rounded corners for the link */
 }
+
+/* Box shadow effect for both #message and the link */
 #message, #message a { 
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); /* Subtle shadow for depth */
 }
+
+/* Placeholder text styling for inputs */
 input::placeholder {
-    font-size: 22px;
+    font-size: 22px; /* Set font size for the placeholder */
 }
+
+/* Input field styling */
 input{
-    font-size: 25px;
+    font-size: 25px; /* Set font size for input fields */
 }
+
+/* Load message styling */
 #load { 
-    color: rgb(147, 143, 143);
-    text-align: center; 
-    font-size: 13px; 
+    color: rgb(147, 143, 143); /* Grey color for load text */
+    text-align: center; /* Center align text */
+    font-size: 13px; /* Small font size */
 }
+
+/* Font-weight class for heavy font weight */
 .font-weight-1000{
-    font-weight: 1000;
+    font-weight: 1000; /* Extremely bold font */
 }
+
+/* Media query for mobile devices */
 @media (max-width: 600px) {
+    /* Adjust body and #message styles for mobile devices */
     body, #message { 
-        margin-top: 0; 
-        background: white; 
-        box-shadow: none; 
+        margin-top: 0; /* Remove top margin */
+        background: white; /* Set background to white */
+        box-shadow: none; /* Remove box shadow */
     }
+    
+    /* Add a top border to body on small screens */
     body { 
-        border-top: 16px solid #ffa100; 
-    } 	
+        border-top: 16px solid #ffa100; /* Add orange top border */
+    } 
 }

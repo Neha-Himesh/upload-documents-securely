@@ -60,8 +60,6 @@ export async function deleteDocument(doc){
         // Delete the document metadata from Firestore
         const documentToBeDeletedRef = firestoreDoc(db, "documents", doc.id); // Get Firestore doc reference
         await deleteDoc(documentToBeDeletedRef); // Delete document metadata
-        console.log("Document metadata deleted from Firestore!");
-
         alert("Document deleted successfully!");
         window.location.reload();  // Refresh the page to reflect changes
     } catch (error) {

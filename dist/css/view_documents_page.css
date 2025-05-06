@@ -1,39 +1,58 @@
 /*  CARD  */
-.card{
-    background:#FFF5EB;
-    border:1px solid #FFE2C6;
-    border-radius:.75rem;
-    box-shadow:0 .5rem 1rem rgba(0,0,0,.06);
+.card {
+    /* Set the background color of the card */
+    background: #FFF5EB;
+    
+    /* Border with a light orange color and slight rounded edges */
+    border: 1px solid #FFE2C6;
+    
+    /* Rounded corners for the card */
+    border-radius: .75rem;
+    
+    /* Box shadow for a subtle 3D effect */
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .06);
 }
-  
-  /*  HEADINGS & TEXT  */
-.card-title{
-	color:#262626;
-	font-weight:600;
+
+/*  HEADINGS & TEXT  */
+.card-title {
+    /* Title text color */
+    color: #262626;
+    
+    /* Semi-bold font weight for emphasis */
+    font-weight: 600;
 }
-.card-text{
-  	color:#5F4B3B;
+
+.card-text {
+    /* Text color for card content */
+    color: #5F4B3B;
 }
-  
-  /*  BUTTON  */
-.btn-primary{
-    background:#FF8C32;
-    border:none;
-    color:#FFFFFF;
+
+/*  BUTTON  */
+.btn-primary {
+    /* Primary button background color */
+    background: #FF8C32;
+    
+    /* Remove default button border */
+    border: none;
+    
+    /* Set button text color to white */
+    color: #FFFFFF;
 }
-.btn-primary:hover{
-    background:#FF7420;
+
+.btn-primary:hover {
+    /* Background color on hover for the button */
+    background: #FF7420;
 }
-  
-  /*  ICONS  */
+
+/*  ICONS  */
 .view-documents-edit-icon,
-.view-documents-share-icon{
-	filter: brightness(0) saturate(100%) invert(15%) sepia(24%) saturate(624%) hue-rotate(344deg) brightness(93%) contrast(89%);
-    /* renders icons in cocoa‑brown without needing separate pngs */
+.view-documents-share-icon {
+    /* Apply a cocoa-brown color filter to the icons */
+    filter: brightness(0) saturate(100%) invert(15%) sepia(24%) saturate(624%) hue-rotate(344deg) brightness(93%) contrast(89%);
+    /* This filter turns the icons into cocoa-brown without needing separate PNG files */
 }
-  
-.view-documents-delete-icon{
+
+.view-documents-delete-icon {
+    /* Apply a different filter for the delete icon (darker brown color) */
     filter: brightness(0) saturate(100%) invert(34%) sepia(93%) saturate(1491%) hue-rotate(354deg) brightness(97%) contrast(106%);
 }
-  
-  

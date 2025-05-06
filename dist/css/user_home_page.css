@@ -1,73 +1,79 @@
-.border-round-right{
-    border-top-right-radius: 35%;
-    border-bottom-right-radius: 35%;
+/* Round borders for the right side of the element */
+.border-round-right {
+    border-top-right-radius: 35%;  /* Rounded top-right corner */
+    border-bottom-right-radius: 35%; /* Rounded bottom-right corner */
 }
-.border-round-left{
-    border-top-left-radius: 35%;
-    border-bottom-left-radius: 35%;
+
+/* Round borders for the left side of the element */
+.border-round-left {
+    border-top-left-radius: 35%;  /* Rounded top-left corner */
+    border-bottom-left-radius: 35%; /* Rounded bottom-left corner */
 }
+
 /* Extends the left-side div visually to the left edge of the screen */
 .border-extend-left {
-    position: relative;
+    position: relative; /* To allow for absolute positioning of ::before pseudo-element */
 }
 
 .border-extend-left::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -1000px;
-    width: 1000px;
-    height: 100%;
-    background: inherit; /* Matches the background */
-    border-top-left-radius: 35%;
-    border-bottom-left-radius: 35%;
-    z-index: -1;
+    content: ''; /* No content, just used for styling */
+    position: absolute; /* Position it absolutely within the parent container */
+    top: 0; /* Align with the top */
+    left: -1000px; /* Shift to the left edge */
+    width: 1000px; /* Extend the width to visually cover the left side */
+    height: 100%; /* Full height of the parent container */
+    background: inherit; /* Match the parent container's background */
+    border-top-left-radius: 35%; /* Rounded top-left corner */
+    border-bottom-left-radius: 35%; /* Rounded bottom-left corner */
+    z-index: -1; /* Place it behind the content */
 }
 
 /* Extends the right-side div visually to the right edge of the screen */
 .border-extend-right {
-    position: relative;
+    position: relative; /* Allows for absolute positioning of ::after pseudo-element */
 }
 
 .border-extend-right::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -1000px;
-    width: 1000px;
-    height: 100%;
-    background-color: inherit; /* Matches the background */
-    border-top-right-radius: 35%;
-    border-bottom-right-radius: 35%;
-    z-index: -1;
+    content: ''; /* No content, just used for styling */
+    position: absolute; /* Position it absolutely within the parent container */
+    top: 0; /* Align with the top */
+    right: -1000px; /* Shift to the right edge */
+    width: 1000px; /* Extend the width to visually cover the right side */
+    height: 100%; /* Full height of the parent container */
+    background-color: inherit; /* Match the parent container's background */
+    border-top-right-radius: 35%; /* Rounded top-right corner */
+    border-bottom-right-radius: 35%; /* Rounded bottom-right corner */
+    z-index: -1; /* Place it behind the content */
 }
 
-.set-background-color{
-    background: rgb(193 165 135); /*rgb(212 178 159) rgb(193 165 135) */
+/* Set background color for elements using this class */
+.set-background-color {
+    background: rgb(193, 165, 135); /* A soft beige color (light brown) */
 }
 
-.secure-document-options:hover{
-    animation: shakeX 1s;
-    animation-duration: 1s;
+/* Apply shake animation on hover for .secure-document-options */
+.secure-document-options:hover {
+    animation: shakeX 1s; /* Apply horizontal shake effect */
+    animation-duration: 1s; /* Duration of the animation */
 }
 
-/* Made the navbar sticky and added background color to the same */
+/* Make the navbar sticky at the top of the page */
 .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.8);
-    transition: all 0.3s ease-in-out;
+    position: sticky; /* Keeps the navbar fixed at the top while scrolling */
+    top: 0; /* Stick it at the top */
+    z-index: 1000; /* Ensure the navbar stays above other elements */
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+    transition: all 0.3s ease-in-out; /* Smooth transition for any changes */
 }
 
-/* Added border to the active section's name highlighted in the navbar. Made background-color as transparent */
-.nav-pills .nav-link.active{
-    border: white 2px solid;
-    background-color: transparent !important ;
+/* Active link styling in the navbar (highlighted section) */
+.nav-pills .nav-link.active {
+    border: white 2px solid; /* White border around active link */
+    background-color: transparent !important; /* Remove background color */
 }
 
-/* Modified font size and weight to the name 'Neha Himesh' present on the navbar */
+/* Navbar brand name styling */
 .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.5rem; /* Set font size for the brand name */
+    font-weight: bold; /* Make the font weight bold */
 }

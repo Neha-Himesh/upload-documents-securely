@@ -8,6 +8,9 @@ import { logoutUserSession } from './logout_session.js'; // Session/logout handl
 // Get reference to the submit button
 const documentUploadPageSubmitButton = document.getElementById('document-upload-page-submit');
 
+// Initialize logout/session check functionality
+logoutUserSession();
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('document-upload-form');
 
@@ -95,7 +98,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Highlight active navigation link in navbar
     highlightActiveNav();
-
-    // Initialize logout/session check functionality
-    logoutUserSession(); // Fixed the typo from "LogoutUserSession"
+    
 });

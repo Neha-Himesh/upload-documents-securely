@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'size': 'invisible', // Use 'normal' for visible checkbox if needed
             'callback': (response) => {
                 // reCAPTCHA solved — token received
-                console.log('reCAPTCHA solved:', response);
+                alert('reCAPTCHA solved:', response);
             },
             'expired-callback': () => {
                 // Called when reCAPTCHA expires
-                console.log('reCAPTCHA expired. Please solve again.');
+                alert('reCAPTCHA expired. Please solve again.');
             }
         }, auth);
 
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Trigger reCAPTCHA verification and call sendOTP on success
         window.recaptchaVerifier.verify()
             .then((token) => {
-                console.log("Token received from .verify():", token);
                 sendOTP(); // Proceed to send OTP
             })
             .catch(err => {
@@ -97,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(async (result) => {
                 alert("OTP verified. Fetching user details...");
                 const user = result.user;
-                console.log("User signed in:", user);
 
                 // Fetch user data from Firestore using phone number
                 const userRef = doc(db, "users", user.phoneNumber);
@@ -106,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (userSnap.exists()) {
                     // If user data exists, save to session storage and redirect
                     const userData = userSnap.data();
-                    console.log("User data:", userData);
 
                     sessionStorage.setItem('userData', JSON.stringify(userData));
 
