@@ -2,6 +2,7 @@ import {db, storage, auth} from './setup.js';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { highlightActiveNav } from './navbar.js';
+import { logoutUserSession } from './logout_session.js';
 
 const documentUploadPageSubmitButton = document.getElementById('document-upload-page-submit');
 
@@ -74,5 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
 
     highlightActiveNav();
+    LogoutUserSession();
         
 });
