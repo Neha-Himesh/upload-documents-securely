@@ -10,7 +10,7 @@ This project enables users to securely upload documents after verifying their id
 - Profile Completion: Users provide their name and email post-OTP verification.  
 - Document Upload: Securely upload various document types.  
 
----
+
 
 ## 🚀 Features
 
@@ -26,7 +26,7 @@ This project enables users to securely upload documents after verifying their id
 
 - Fully modular, testable, and maintainable codebase  
 
----
+
 
 ## 🛠 Tech Stack
 
@@ -35,7 +35,7 @@ This project enables users to securely upload documents after verifying their id
 - Firebase (Auth, Firestore, Storage, Hosting)  
 - Webpack  
 
----
+
 
 ## 🔧 Setup & Installation
 
@@ -83,7 +83,7 @@ This project enables users to securely upload documents after verifying their id
 5. Set Up Firestore:
     Create Firestore collections for user profiles and uploaded documents as per your application's requirements.  
 
----
+
 
 ## 🧪 Testing
 - OTP Verification: Test the OTP flow using Firebase Emulator Suite or by deploying to Firebase Hosting.  
@@ -92,7 +92,7 @@ This project enables users to securely upload documents after verifying their id
 
 - Document Upload: Verify that documents are uploaded securely and metadata is stored in Firestore.  
 
---- 
+ 
 
 
 ## 📌 Notes
@@ -100,7 +100,7 @@ This project enables users to securely upload documents after verifying their id
 
 - For production, consider implementing additional security measures like Firebase Hosting and Firestore security rules.  
 
----
+
 
 ## 📄 License
 
