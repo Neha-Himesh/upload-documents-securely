@@ -82,11 +82,11 @@ This project enables users to securely upload documents after verifying their id
 
     If you're using Webpack to bundle the project, you may already have a script to start the server. Try running this command:
 
-    npm run build
+    ``` bash npm run build
 
     Once the above is run, navigate to dist folder in the project and run the below command:  
 
-    npx serve
+    ``` bash npx serve
 
 5. Open in browser  
     If the above works, the local server will start, and you can access the project in your browser at:  
